@@ -1,0 +1,54 @@
+﻿@using GymSystemBLL.ViewModels.BookingViewModels
+@model CreateBookingViewModel
+
+@{
+    ViewData["Title"] = "Create Booking";
+}
+
+<h1>Create New Booking</h1>
+
+<hr />
+<div class="row">
+    <div class="d-flex justify-content-center align-items-center h-100">
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">Booking Information</h5>
+                </div>
+                <div class="card-body">
+                    <form method="post" asp-action="Create" asp-route-SessionId="@ViewBag.sessionId">
+                        <div class="mb-3">
+                            <label asp-for="@Model.MemberId" class="form-label">Member</label>
+                            <select asp-for="@Model.MemberId" asp-items="ViewBag.Members" name="memberId" class="form-select">
+                                <option value="">-- Select Member --</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Create Booking
+                            </button>
+                            <a asp-action="GetMembersForUpcomingSession" asp-route-id="@ViewBag.sessionId" @* asp-route-id="@ViewContext.RouteData.Values["sessionId"]" *@ class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Back to List
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        $(document).ready(function() {
+            $('#MemberId').select2({
+                placeholder: "Select a member",
+                allowClear: true,
+                width: '100%'
+            });
+        });
+    </script>
+}
