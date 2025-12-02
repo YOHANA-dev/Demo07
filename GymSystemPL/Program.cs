@@ -10,8 +10,11 @@ using GymSystemDAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
+
+
 namespace GymSystemPL
-{
+{   
+
     public class Program
     {
         public static void Main(string[] args)
